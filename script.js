@@ -1,13 +1,32 @@
-document.getElementById("login-form").addEventListener("submit", function(e) {
-  e.preventDefault(); // Prevent form from refreshing the page
-
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  if (username === "Sergioperea" && password === "drchoco@34") {
-    // Simulate redirect after login
-    window.location.href = "dashboard.html"; // Or show dashboard section
-  } else {
-    document.getElementById("error-message").textContent = "Invalid username or password.";
-  }
+// Hide loading screen after 2 seconds
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const loader = document.getElementById("loading-screen");
+    if (loader) loader.style.display = "none";
+  }, 1500);
 });
+
+// Modal logic
+function showModal(action) {
+  const modal = document.getElementById("modal");
+  const title = document.getElementById("modal-title");
+  modal.style.display = "block";
+
+  switch (action) {
+    case 'create':
+      title.innerText = "Create Account";
+      break;
+    case 'send':
+      title.innerText = "Send Money";
+      break;
+    case 'flight':
+      title.innerText = "Book Flight";
+      break;
+    default:
+      title.innerText = "Action";
+  }
+}
+
+function hideModal() {
+  document.getElementById("modal").style.display = "none";
+}
